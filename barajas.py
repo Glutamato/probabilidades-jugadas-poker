@@ -28,13 +28,26 @@ def simular_manos(baraja, intentos, tamano_mano):
     return manos
 
 def par(valores_acumulados):
+    """
+    Regresa 1 si encuentra un par,
+    de lo contrario regresa 0
 
+    valores_acumulados es un arreglo con
+    valores acumulados de la mano  
+    """
     for val in valores_acumulados:
         if val == 2:
             return 1
     return 0
 
 def doble_par(valores_acumulados):
+    """
+    Regresa 1 si encuentra dos pares,
+    de lo contrario regresa 0
+
+    valores_acumulados es un arreglo con
+    valores acumulados de la mano  
+    """
     contador = 0
     for val in valores_acumulados:
         if val == 2:
@@ -45,13 +58,26 @@ def doble_par(valores_acumulados):
         return 0
 
 def triada(valores_acumulados):
+    """
+    Regresa 1 si encuentra una triada,
+    de lo contrario regresa 0
 
+    valores_acumulados es un arreglo con
+    valores acumulados de la mano
+    """
     for val in valores_acumulados:
         if val == 3:
             return 1
     return 0
 
 def escalera(valores):
+    """
+    Regresa 1 si encuentra una escalera,
+    de lo contrario regresa 0
+
+    valores es un arreglo con todos los
+    valores de la mano
+    """
     valores_numericos = []
     for valor in valores:
         try:
@@ -79,6 +105,13 @@ def escalera(valores):
     return 1
 
 def color(palos):
+    """
+    Regresa 1 si encuentra un color,
+    de lo contrario regresa 0
+
+    palos es un arreglo con todos los
+    palos de la mano
+    """
     palo_carta_1 = palos[0]
     for palo in palos:
         if palo_carta_1 != palo:
@@ -86,6 +119,13 @@ def color(palos):
     return 1
 
 def full(valores_acumulados):
+    """
+    Regresa 1 si encuentra un full,
+    de lo contrario regresa 0
+
+    valores_acumulados es un arreglo con
+    valores acumulados de la mano
+    """
     un_par = par(valores_acumulados)
     una_triada = triada(valores_acumulados)
     if un_par == 1 and una_triada == 1:
@@ -94,13 +134,28 @@ def full(valores_acumulados):
         return 0
 
 def poker(valores_acumulados):
+    """
+    Regresa 1 si encuentra un poker,
+    de lo contrario regresa 0
 
+    valores_acumulados es un arreglo con
+    valores acumulados de la mano
+    """
     for val in valores_acumulados:
         if val == 4:
             return 1
     return 0
 
 def escalera_de_color(valores, palos):
+    """
+    Regresa 1 si encuentra una escalera
+    de color, de lo contrario regresa 0
+
+    valores es un arreglo con todos los
+    valores de la mano
+    palos es un arreglo con todos los
+    palos de la mano
+    """
     una_escalera = escalera(valores)
     un_color = color(palos)
     if una_escalera == 1 and un_color == 1:
@@ -109,6 +164,15 @@ def escalera_de_color(valores, palos):
         return 0
 
 def escalera_real_de_color(valores, palos):
+    """
+    Regresa 1 si encuentra una escalera
+    real de color, de lo contrario regresa 0
+
+    valores es un arreglo con todos los
+    valores de la mano
+    palos es un arreglo con todos los
+    palos de la mano
+    """
     una_escalera = escalera(valores)
     un_color = color(palos)
     if una_escalera == 1 and un_color == 1:
