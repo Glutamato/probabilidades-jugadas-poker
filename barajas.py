@@ -80,11 +80,11 @@ def escalera(valores):
     """
     valores_numericos = []
     for valor in valores:
-        try:
+        try:       # Funciona del 2 al 10
             valor_numerico = int(valor)
             valores_numericos.append(valor_numerico)
 
-        except ValueError:
+        except ValueError:  # Funciona con jota, reina, rey y as
             if valor == 'jota':
                 valores_numericos.append(11)
             elif valor == 'reina':
@@ -95,11 +95,12 @@ def escalera(valores):
                 valores_numericos.append(1)
                 valores_numericos.append(14)
     
-    valores_numericos.sort()
+    valores_numericos.sort()    # ordenación acendente
     n_valores = len(valores_numericos)
-    for i in range(n_valores - 1):
+
+    for i in range(n_valores - 1):  # ejemplo cuarta iteración [2, 3, 4, **5**, **6**]
         if valores_numericos[i] != valores_numericos[i + 1] - 1:
-            if valores_numericos[i] != 1:
+            if valores_numericos[i] != 1:   # escalera real [1, 10, 11, 12, 13, 14]
                 return 0
         i += 1
     return 1
@@ -112,7 +113,7 @@ def color(palos):
     palos es un arreglo con todos los
     palos de la mano
     """
-    palo_carta_1 = palos[0]
+    palo_carta_1 = palos[0] # Primer palo 
     for palo in palos:
         if palo_carta_1 != palo:
             return 0
@@ -128,7 +129,7 @@ def full(valores_acumulados):
     """
     un_par = par(valores_acumulados)
     una_triada = triada(valores_acumulados)
-    if un_par == 1 and una_triada == 1:
+    if un_par == 1 and una_triada == 1: # ¿Hay par y triada?
         return 1
     else:
         return 0
@@ -158,7 +159,7 @@ def escalera_de_color(valores, palos):
     """
     una_escalera = escalera(valores)
     un_color = color(palos)
-    if una_escalera == 1 and un_color == 1:
+    if una_escalera == 1 and un_color == 1: # ¿Hay escalera y color?
         return 1
     else:
         return 0
@@ -173,10 +174,10 @@ def escalera_real_de_color(valores, palos):
     palos es un arreglo con todos los
     palos de la mano
     """
-    una_escalera = escalera(valores)
-    un_color = color(palos)
-    if una_escalera == 1 and un_color == 1:
-        if '10' in valores and 'as' in valores:
+    una_escalera_de_color = escalera_de_color(valores, palos)
+
+    if una_escalera_de_color == 1:              # ¿Hay escalera de color?
+        if '10' in valores and 'as' in valores: # ¿Cohexisten el 10 y el as?
             return 1
         else:
             return 0
@@ -198,7 +199,7 @@ def main(tamano_mano, intentos):
     
     manos = simular_manos(baraja, intentos, tamano_mano)
     
-    for mano in manos:
+    for mano in manos: # Obtiene palos y valores
         valores = []
         palos = []
         for carta in mano:
@@ -217,7 +218,7 @@ def main(tamano_mano, intentos):
         jugadas['escalera de color'] += escalera_de_color(valores, palos)
         jugadas['escalera real de color'] += escalera_real_de_color(valores, palos)
 
-    for jugada in jugadas.keys():
+    for jugada in jugadas.keys():   # Imprime y calcula resultados
         probabilidad = jugadas[jugada] / intentos
         print(f'la probabilidad de sacar {jugada} en una mano de {tamano_mano} es de {probabilidad}')
 
